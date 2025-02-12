@@ -1,0 +1,58 @@
+services:
+  backend-for-frontend:
+    build:
+      context: services/backend-for-frontend-go
+      dockerfile: Dockerfile
+    image: backend-for-frontend-go:latest
+    ports:
+      - "10115:10115"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:10115/health || exit 1"]
+      interval: 5s
+      timeout: 10s
+      retries: 24
+
+  image-picker:
+    build:
+      context: services/image-picker-go
+      dockerfile: Dockerfile
+    image: image-picker-go:latest
+    ports:
+      - "10116:10116" # the outer ports can't be the same
+    environment:
+      BUCKET_NAME: random-pictures
+
+  meminator:
+    build:
+      context: services/meminator-go
+      dockerfile: Dockerfile
+    image: meminator-go:latest
+    ports:
+      - "10117:10117" # they can't be the same
+
+  phrase-picker:
+    build:
+      context: services/phrase-picker-go
+      dockerfile: Dockerfile
+    image: phrase-picker-go:latest
+    ports:
+      - "10118:10118" # the outer ports can't be the same
+
+  web:
+    build:
+      context: services/web
+      dockerfile: Dockerfile
+    image: web:latest
+    # volumes: # uncomment this for faster development on the frontend
+    #   - ./services/web/dist:/usr/share/nginx/html # Mount directory containing static files -- only do this for development
+    ports:
+      - "10114:10114" # Expose port 10114 for Nginx
+    depends_on:
+      backend-for-frontend:
+        condition: service_healthy
+      image-picker:
+        condition: service_started
+      meminator:
+        condition: service_started
+      phrase-picker:
+        condition: service_started    
