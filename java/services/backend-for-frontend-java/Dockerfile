@@ -20,8 +20,8 @@ COPY opentelemetry-javaagent.jar ./opentelemetry-javaagent.jar
 # RG - Configuring agent env variables
 ENV OTEL_SERVICE_NAME="statements"
 ENV OTEL_EXPORTER_OTLP_PROTOCOL="http/protobuf"
-# ENV OTEL_EXPORTER_OTLP_TRACES_ENDPOINT="https://api.honeycomb.io/v1/traces"
-# ENV OTEL_EXPORTER_OTLP_TRACES_HEADERS="x-honeycomb-team=uq4F6XqUpMjvKK7ZhrWOpA"
+# ENV OTEL_EXPORTER_OTLP_TRACES_ENDPOINT="<endpoint>"
+# ENV OTEL_EXPORTER_OTLP_TRACES_HEADERS="<header>"
 ENV OTEL_EXPORTER_OTLP_ENDPOINT="https://bookish-space-chainsaw-jpjq5q9ph59pp-4318.app.github.dev"
 
 EXPOSE 10115
