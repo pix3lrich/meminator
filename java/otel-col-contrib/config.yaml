@@ -8,14 +8,14 @@ receivers:
 
 processors:
   batch:
-  # resource:
-  #   attributes:
-  #   - key: service.namespace
-  #     value: "Meminator"
-  #     action: insert
-  #   - key: deployment.environment
-  #     value: "test"
-  #     action: insert
+  resource:
+    attributes:
+    - key: service.namespace
+      value: "Meminator"
+      action: insert
+    - key: deployment.environment
+      value: "test"
+      action: insert
 
 exporters:
   debug:

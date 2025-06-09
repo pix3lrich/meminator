@@ -30,7 +30,7 @@ COPY --from=build /app/target/meminator-0.0.1-SNAPSHOT.jar ./meminator.jar
 COPY opentelemetry-javaagent.jar ./opentelemetry-javaagent.jar
 
 # RG - Configuring agent env variables
-ENV OTEL_SERVICE_NAME="statements"
+ENV OTEL_SERVICE_NAME="meminator"
 ENV OTEL_EXPORTER_OTLP_PROTOCOL="http/protobuf"
 # ENV OTEL_EXPORTER_OTLP_TRACES_ENDPOINT="<endpoint>"
 # ENV OTEL_EXPORTER_OTLP_TRACES_HEADERS="<header>"

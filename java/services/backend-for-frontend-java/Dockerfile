@@ -18,7 +18,7 @@ COPY --from=build /app/target/backend-for-frontend-0.0.1-SNAPSHOT.jar ./backend-
 COPY opentelemetry-javaagent.jar ./opentelemetry-javaagent.jar
 
 # RG - Configuring agent env variables
-ENV OTEL_SERVICE_NAME="statements"
+ENV OTEL_SERVICE_NAME="backend-for-frontend"
 ENV OTEL_EXPORTER_OTLP_PROTOCOL="http/protobuf"
 # ENV OTEL_EXPORTER_OTLP_TRACES_ENDPOINT="<endpoint>"
 # ENV OTEL_EXPORTER_OTLP_TRACES_HEADERS="<header>"
