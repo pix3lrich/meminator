@@ -34,7 +34,7 @@ ENV OTEL_SERVICE_NAME="statements"
 ENV OTEL_EXPORTER_OTLP_PROTOCOL="http/protobuf"
 # ENV OTEL_EXPORTER_OTLP_TRACES_ENDPOINT="<endpoint>"
 # ENV OTEL_EXPORTER_OTLP_TRACES_HEADERS="<header>"
-ENV OTEL_EXPORTER_OTLP_ENDPOINT="https://bookish-space-chainsaw-jpjq5q9ph59pp-4318.app.github.dev"
+ENV OTEL_EXPORTER_OTLP_ENDPOINT="https://bug-free-engine-w477r95453vg5v-4318.app.github.dev"
 
 EXPOSE 10117
 

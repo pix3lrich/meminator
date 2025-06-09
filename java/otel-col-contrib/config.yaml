@@ -8,20 +8,22 @@ receivers:
 
 processors:
   batch:
-  resource:
-    attributes:
-    - key: service.namespace
-      value: "Meminator"
-      action: insert
-    - key: deployment.environment
-      value: "uat"
-      action: insert
+  # resource:
+  #   attributes:
+  #   - key: service.namespace
+  #     value: "Meminator"
+  #     action: insert
+  #   - key: deployment.environment
+  #     value: "test"
+  #     action: insert
 
 exporters:
   debug:
 
   otlphttp:
-    endpoint: "<endpoint>"
+    endpoint: https://otlp-gateway-prod-gb-south-1.grafana.net/otlp
+    headers:
+      Authorization: Basic MTE2ODc0NDpnbGNfZXlKdklqb2lNVE0wTURNeU15SXNJbTRpT2lKemRHRmpheTB4TVRZNE56UTBMVzkwYkhBdGQzSnBkR1V0YjNSc2NDMWxibVJ3YjJsdWRDSXNJbXNpT2lJMk1ESnRhWE5XTlU1cFlXVjVPREJuYmpreFlUQk1hak1pTENKdElqcDdJbklpT2lKd2NtOWtMV2RpTFhOdmRYUm9MVEVpZlgwPQ==
     tls:
       insecure: false
       insecure_skip_verify: true
@@ -37,7 +39,7 @@ extensions:
 service:
   extensions: [health_check, pprof, zpages]
   pipelines:
-    metrics:
+    traces:
       receivers: [otlp]
       processors: [batch,resource]
       exporters: [otlphttp]
