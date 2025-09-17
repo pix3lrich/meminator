@@ -17,13 +17,17 @@ processors:
       value: "test"
       action: insert
 
+connectors:
+  spanmetrics:
+    namespace: span.metrics
+
 exporters:
   debug:
 
   otlphttp:
     endpoint: https://otlp-gateway-prod-gb-south-1.grafana.net/otlp
     headers:
-      Authorization: ${GRAFANA_CLOUD_OTLP_AUTH_HEADER}
+      Authorization: Basic MTE2ODc0NDpnbGNfZXlKdklqb2lNVE0wTURNeU15SXNJbTRpT2lKemRHRmpheTB4TVRZNE56UTBMVzkwYkhBdGQzSnBkR1V0YjNSc2NDMWxibVJ3YjJsdWRDSXNJbXNpT2lJMk1ESnRhWE5XTlU1cFlXVjVPREJuYmpreFlUQk1hak1pTENKdElqcDdJbklpT2lKd2NtOWtMV2RpTFhOdmRYUm9MVEVpZlgwPQ==
     tls:
       insecure: false
       insecure_skip_verify: true
@@ -42,4 +46,8 @@ service:
     traces:
       receivers: [otlp]
       processors: [batch,resource]
+      exporters: [otlphttp, spanmetrics]
+    metrics:
+      receivers: [spanmetrics]
+      processors: [batch]
       exporters: [otlphttp]

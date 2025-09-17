@@ -22,7 +22,7 @@ ENV OTEL_SERVICE_NAME="backend-for-frontend"
 ENV OTEL_EXPORTER_OTLP_PROTOCOL="http/protobuf"
 # ENV OTEL_EXPORTER_OTLP_TRACES_ENDPOINT="<endpoint>"
 # ENV OTEL_EXPORTER_OTLP_TRACES_HEADERS="<header>"
-ENV OTEL_EXPORTER_OTLP_ENDPOINT="https://bug-free-engine-w477r95453vg5v-4318.app.github.dev"
+ENV OTEL_EXPORTER_OTLP_ENDPOINT="https://scaling-system-4r77jgwwq3xr5-4318.app.github.dev/"
 
 EXPOSE 10115
 
